@@ -35,7 +35,6 @@ class SafetyAgent:
         3. JET BLAST: Personnel must remain 45m clear of the rear of an aircraft with running engines.
         4. PPE: High-Visibility Vests and Hearing Protection are mandatory in all Airside Operational Areas (AOA).
         """
-        # ... inside analyze_video function ...
         
         prompt = """
         You are a Senior Airside Safety Auditor. Analyze this CCTV footage carefully.
