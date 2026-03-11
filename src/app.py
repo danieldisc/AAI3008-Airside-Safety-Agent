@@ -132,6 +132,7 @@ if st.session_state.get('file_processed') and st.session_state.get('analysis_res
                 st.metric("Chunk Accuracy", f"{obs_metrics['accuracy'] * 100:.1f}%")
                 st.metric("Precision", f"{obs_metrics['precision'] * 100:.1f}%")
                 st.metric("Recall", f"{obs_metrics['recall'] * 100:.1f}%")
+                st.metric("F1 Score", f"{obs_metrics['f1_score'] * 100:.1f}%")
             else:
                 st.info(f"Missing `{base_name}_truths.json` for Phase 1.")
                 

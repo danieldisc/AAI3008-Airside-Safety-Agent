@@ -1,7 +1,7 @@
 import os
 import json
 import warnings
-from sklearn.metrics import precision_score, recall_score, accuracy_score
+from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
 import nltk
 from nltk.translate import meteor_score
 from nltk.tokenize import word_tokenize
@@ -13,10 +13,12 @@ warnings.filterwarnings("ignore")
 # Ensure required NLTK data is downloaded for METEOR
 try:
     nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')  # NEW: Check for punkt_tab
     nltk.data.find('corpora/wordnet')
 except LookupError:
-    nltk.download('punkt')
-    nltk.download('wordnet')
+    nltk.download('punkt', quiet=True)
+    nltk.download('punkt_tab', quiet=True)  # NEW: Download punkt_tab
+    nltk.download('wordnet', quiet=True)
 
 def evaluate_observer_phase(truth_json_path, pred_json_data, chunk_size=10):
     """
@@ -51,7 +53,8 @@ def evaluate_observer_phase(truth_json_path, pred_json_data, chunk_size=10):
     metrics = {
         "accuracy": accuracy_score(y_true, y_pred),
         "precision": precision_score(y_true, y_pred, zero_division=0),
-        "recall": recall_score(y_true, y_pred, zero_division=0)
+        "recall": recall_score(y_true, y_pred, zero_division=0),
+        "f1_score": f1_score(y_true, y_pred, zero_division=0)
     }
     return metrics
 
