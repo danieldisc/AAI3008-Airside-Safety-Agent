@@ -21,8 +21,14 @@ class SafetyAgent:
         # Define the model to use throughout the class
         self.model_name = "gemini-3.1-flash-lite-preview"
         
-    def _load_prompt(self, filepath):
-        """Helper method to load text from a file."""
+    def _load_prompt(self, filename):
+        """Helper method to load text from a file using absolute paths."""
+        # 1. Get the directory where vlm_agent.py currently lives (the 'src' folder)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # 2. Join it with 'prompts' and the specific filename
+        filepath = os.path.join(current_dir, "prompts", filename)
+        
         try:
             with open(filepath, 'r', encoding='utf-8') as file:
                 return file.read()
@@ -78,9 +84,10 @@ class SafetyAgent:
         # incident_log = None
         # incident_time_start = 0
         incidents = []  # List to hold all detected violations
+        full_video_logs = []
         
         # --- MAP PHASE: The Observer ---
-        observer_prompt = self._load_prompt("prompts/observer_prompt.txt")
+        observer_prompt = self._load_prompt("observer_prompt.txt")
 
         for idx, chunk in enumerate(chunks):
             if progress_callback:
@@ -97,6 +104,14 @@ class SafetyAgent:
             
             try:
                 log_data = json.loads(response.text)
+                
+                full_video_logs.extend(log_data) 
+                
+                chunk_has_violation = False
+                for state in log_data:
+                    if state.get("propeller_active") and state.get("danger_zone_violation"):
+                        chunk_has_violation = True
+                        break
                 
                 chunk_has_violation = False
                 for state in log_data:
@@ -138,7 +153,7 @@ class SafetyAgent:
                     "log": incident['log']
                 })
                 
-            analyst_prompt = self._load_prompt("prompts/analyst_prompt.txt")
+            analyst_prompt = self._load_prompt("analyst_prompt.txt")
             
             final_response = self.client.models.generate_content(
                 model=self.model_name,
@@ -147,7 +162,7 @@ class SafetyAgent:
             
             if progress_callback:
                 progress_callback(100, "Analysis complete.")
-            return final_response.text
+            return full_video_logs, final_response.text
             
         else:
             if progress_callback:

@@ -1,0 +1,17 @@
+OVERALL INCIDENT SUMMARY
+Throughout the reviewed 15-second footage, Person A positioned themselves directly in front of an active single-engine aircraft. Person A then moved towards the aircraft attempting to make physical contact with the aircraft's propeller while the engine was running, demonstrating a severe and critical breach of safety, which is to stay 7.5m away from critical areas, in this case the propeller rotation area, of the aircraft.
+
+COMBINED NARRATIVE SEQUENCE
+Chunk 1 (00:00 - 00:10): Begins with the aircraft engine already running and the propeller actively spinning. From 00:00, Person A is observed standing immediately in front of the aircraft's nose, well within the restricted safety buffer. At 00:02, Person A extends their right hand and walks towards the aircraft propeller, physically trying to touch the red spinner cone at the center of the active propeller.
+
+Chunk 2 (00:10 - 00:15): Person A remains stationary at a distance of 0 meters from the hazard, making repeated physical contact with the spinner throughout the duration of the clip (specifically noted again around 00:11). At no point does the individual attempt to retreat to a safe distance, remaining fully inside the critical strike zone until the footage concludes at 00:15.
+
+RULE REFERENCE & VERDICT
+VIOLATION
+
+CASD Rule 1 (EXCLUSION ZONES): The individual breached the minimum Safety Buffer of 7.5 meters from an active aircraft engine/spinning propeller.
+
+CASD Rule 2 (INGESTION/STRIKE HAZARD): The individual entered and remained within the 5m front radius of a running engine, posing an immediate and fatal strike hazard from the invisible spinning propeller blades.
+
+COMPREHENSIVE ROOT CAUSE OBSERVATION
+Based on the visual evidence, the root cause of this violation is deliberate, reckless behavior and a complete disregard for basic airside safety protocols. There is no operational, maintenance, or marshalling objective that requires personnel to physically touch an active propeller spinner. The individual's actions appear to be a stunt, completely ignoring the lethal hazard posed by the spinning propeller blades just inches from their arm and body.
