@@ -20,6 +20,14 @@ class SafetyAgent:
         
         # Define the model to use throughout the class
         self.model_name = "gemini-3.1-flash-lite-preview"
+        
+    def _load_prompt(self, filepath):
+        """Helper method to load text from a file."""
+        try:
+            with open(filepath, 'r', encoding='utf-8') as file:
+                return file.read()
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Prompt file not found at {filepath}. Please ensure it exists.")
 
     def _extract_frames(self, video_path, extract_fps=1):
         """Extracts frames from the video at a specified FPS."""
@@ -72,30 +80,7 @@ class SafetyAgent:
         incidents = []  # List to hold all detected violations
         
         # --- MAP PHASE: The Observer ---
-        observer_prompt = """
-        You are a Senior Airside Safety Auditor tracking system. You are looking at sequential frames representing 1-second intervals.
-        
-        CHANGI AIRSIDE SAFETY DIRECTIVE (CASD) - REF: CAAS/IATA-IGOM:
-        1. EXCLUSION ZONES: Personnel must maintain a minimum Safety Buffer of 7.5 METERS from any active aircraft engine or propeller.
-        2. INGESTION HAZARD: Entering the suction zone (front 5m radius) of a running engine is a Critical Safety Violation.
-        3. JET BLAST: Personnel must remain 45m clear of the rear of an aircraft with running engines.
-        
-        CRITICAL INSTRUCTIONS FOR VISION ANALYSIS:
-        1. DEPTH PERCEPTION: Be very careful with camera perspective. A person standing 10 meters *behind* an engine might look close in a 2D video. Look for shadows, feet position, and overlapping objects to judge true distance.
-        2. CONTEXT: If a person is holding a marshalling wand, standing near a tug, or clearly walking on a designated path, take this into account for their actions, but distance rules to active engines STILL APPLY.
-        
-        TASK:
-        Analyze these frames and output a strictly formatted JSON array. The array must contain exactly one object for each frame provided.
-        
-        Schema for each object:
-        {
-            "frame_index": [integer starting from 0],
-            "propeller_active": [boolean - true if engine/propeller is visibly spinning/running],
-            "person_detected": [boolean - true if ground crew is visible],
-            "danger_zone_violation": [boolean - true if person breaches the 7.5m exclusion, 5m ingestion, or 45m jet blast zones of an ACTIVE engine]
-        }
-        Return ONLY valid JSON. No markdown, no conversational text.
-        """  
+        observer_prompt = self._load_prompt("prompts/observer_prompt.txt")
 
         for idx, chunk in enumerate(chunks):
             if progress_callback:
@@ -153,36 +138,7 @@ class SafetyAgent:
                     "log": incident['log']
                 })
                 
-            analyst_prompt = f"""
-            You are a Senior Airside Safety Auditor. Safety violations occurred at multiple points during this footage.
-            
-            CHANGI AIRSIDE SAFETY DIRECTIVE (CASD) - REF: CAAS/IATA-IGOM:
-            1. EXCLUSION ZONES: 7.5m buffer from active engine/propeller.
-            2. INGESTION HAZARD: 5m radius suction zone.
-            3. JET BLAST: 45m clear of the rear.
-            
-            COMBINED SYSTEM LOG FOR ALL FLAGGED INCIDENTS:
-            {json.dumps(combined_logs, indent=2)}
-            
-            TASK:
-            Review the attached frames (which contain all flagged moments) corresponding to the combined logs above. 
-            Analyze all these parts as a whole and synthesize them into ONE single, cohesive narrative incident report.
-            Tell the complete storyline of what the crew member(s) were doing across all these flagged moments.
-            
-            OUTPUT FORMAT (Use these exact headings):
-            
-            ### OVERALL INCIDENT SUMMARY
-            [Brief 2-3 sentence overview of the entire sequence of events]
-            
-            ### COMBINED NARRATIVE SEQUENCE
-            [Detailed chronological breakdown combining all flagged parts. Explain the depth/distance observations. Tell the full story of what led to these violations as a single timeline.]
-            
-            ### RULE REFERENCE & VERDICT
-            [Cite the specific CASD rules violated across the footage and state the final status: VIOLATION]
-            
-            ### COMPREHENSIVE ROOT CAUSE OBSERVATION
-            [Based on the complete visual context, explain the underlying reason for these repeated/extended violations (e.g., systemic disregard for exclusion zones, retrieving dropped equipment, distracted, improper marshalling position)]
-            """
+            analyst_prompt = self._load_prompt("prompts/analyst_prompt.txt")
             
             final_response = self.client.models.generate_content(
                 model=self.model_name,
