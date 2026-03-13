@@ -1,0 +1,15 @@
+### OVERALL INCIDENT SUMMARY
+A crew member repeatedly violated airside safety directives by walking dangerously close to an active aircraft engine, disregarding the exclusion zones. The individual was observed moving within a hazardous proximity to both the engine and propeller for an extended period.
+
+### COMBINED NARRATIVE SEQUENCE
+Throughout the sequence, a single crew member is consistently seen moving within a 7.5-meter exclusion zone from an active engine. Initially, the person walks parallel to the aircraft, possibly distracted or engaged in another task. As they progress, the trajectory takes them dangerously close to the ingestion zone, creating a severe risk. Despite the potential hazards, the individual appears unperturbed, even pausing briefly at times, which suggests a lack of awareness or concern about their precarious position. The sequence ends with the crew member remaining within proximity of the moving engine, highlighting repeated safety breaches.
+
+### RULE REFERENCE & VERDICT
+The following CASD rules were violated:
+1. **Exclusion Zones**: The individual repeatedly breached the 7.5-meter buffer from the active engine/propeller.
+2. **Ingestion Hazard**: The proximity risk was heightened by entering the 5-meter radius suction zone.
+
+**Final Status: VIOLATION**
+
+### COMPREHENSIVE ROOT CAUSE OBSERVATION
+The primary cause of these repeated safety violations seems to be a systemic disregard for established boundaries, possibly due to inadequate training or briefing on safety protocols. The crew member’s behavior suggests a lack of situational awareness, likely exacerbated by distraction or insufficient supervision, leading to an extended presence in hazardous areas.

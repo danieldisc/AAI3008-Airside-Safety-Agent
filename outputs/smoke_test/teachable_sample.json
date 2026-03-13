@@ -1,0 +1,27 @@
+{
+  "clip_id": "inc_airport_ground_handler_safe_wave_veo",
+  "stage": "llm3_teachable_moment",
+  "coaching_items": [
+    {
+      "claim_id": "obs_3",
+      "violation_code": "ENG_INGESTION_ZONE_BREACH",
+      "severity": "high",
+      "priority": 1,
+      "teachable_moment": "Engine intake and blast zones are immediate life-safety boundaries. Personnel must never enter these areas while engines are running or start-up is imminent.",
+      "corrective_actions": [
+        "Stop ramp movement in the affected stand and clear all personnel from danger zones.",
+        "Conduct a targeted safety brief on intake/blast boundaries before next turnaround.",
+        "Verify stand markings and visual hazard boundary cues are clearly visible."
+      ],
+      "prevention_controls": [
+        "Pre-task hazard briefing with engine-danger map",
+        "Supervisor confirmation of zone clearance before movement",
+        "Recurring competency checks for ramp crew"
+      ],
+      "supporting_citations": [
+        "engine-danger-areas.pdf (page 1)",
+        "gosm-issue2-ver-1.pdf (page 28)"
+      ]
+    }
+  ]
+}

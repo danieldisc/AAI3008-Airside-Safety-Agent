@@ -3,7 +3,6 @@ import os
 import time
 from vlm_agent import SafetyAgent
 from report_gen import create_pdf_report
-from evaluate import evaluate_observer_phase, evaluate_analyst_phase
 
 st.set_page_config(
     page_title="Changi Airside Safety Audit",
@@ -145,11 +144,18 @@ if st.session_state.get('file_processed') and st.session_state.get('analysis_res
     truth_report_path = os.path.join(eval_folder, f"{base_name}_report.txt")
     
     if os.path.exists(truth_json_path) or os.path.exists(truth_report_path):
+        try:
+            from evaluate import evaluate_observer_phase, evaluate_analyst_phase
+        except ImportError as exc:
+            st.warning(f"Evaluation dependencies are unavailable: {exc}")
+            evaluate_observer_phase = None
+            evaluate_analyst_phase = None
+
         col1, col2 = st.columns(2)
         
         with col1:
             st.markdown("**Phase 1: Observer (Detection)**")
-            if os.path.exists(truth_json_path):
+            if os.path.exists(truth_json_path) and evaluate_observer_phase is not None:
                 obs_metrics = evaluate_observer_phase(
                     truth_json_path, 
                     st.session_state['full_logs'], 
@@ -160,12 +166,14 @@ if st.session_state.get('file_processed') and st.session_state.get('analysis_res
                 st.metric("Precision", f"{obs_metrics['precision'] * 100:.1f}%")
                 st.metric("Recall", f"{obs_metrics['recall'] * 100:.1f}%")
                 st.metric("F1 Score", f"{obs_metrics['f1_score'] * 100:.1f}%")
+            elif os.path.exists(truth_json_path):
+                st.info("Observer evaluation is unavailable until optional evaluation packages are installed.")
             else:
                 st.info(f"Missing `{base_name}_truths.json` for Phase 1.")
                 
         with col2:
             st.markdown("**Phase 2: Analyst (Narrative)**")
-            if os.path.exists(truth_report_path):
+            if os.path.exists(truth_report_path) and evaluate_analyst_phase is not None:
                 with st.spinner("Calculating NLP Metrics (BERTScore & METEOR)..."):
                     ana_metrics = evaluate_analyst_phase(
                         truth_report_path, 
@@ -174,6 +182,8 @@ if st.session_state.get('file_processed') and st.session_state.get('analysis_res
                     
                 st.metric("BERTScore (F1)", f"{ana_metrics['bert_f1']:.3f}")
                 st.metric("METEOR Score", f"{ana_metrics['meteor_score']:.3f}")
+            elif os.path.exists(truth_report_path):
+                st.info("Analyst evaluation is unavailable until optional evaluation packages are installed.")
             else:
                 st.info(f"Missing `{base_name}_report.txt` for Phase 2.")
                 

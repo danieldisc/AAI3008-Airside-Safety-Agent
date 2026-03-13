@@ -1,0 +1,54 @@
+{
+  "pack": "core_ramp_safety",
+  "version": "1.0",
+  "rules": [
+    {
+      "code": "ENG_INGESTION_ZONE_BREACH",
+      "label": "Personnel entered engine ingestion/blast danger area",
+      "severity": "high",
+      "trigger_keywords": ["intake", "hazard", "blast", "fan blades", "near engine", "stand clear of engines"],
+      "evidence_keywords": ["engine intake", "blast area", "danger area", "remain clear", "engines are running"],
+      "action_tags": ["stop_operation", "retrain_ground_crew", "mark_hazard_boundary"]
+    },
+    {
+      "code": "NO_STOP_SIGNAL_ON_DANGER",
+      "label": "Missing or ineffective STOP marshalling signal during danger",
+      "severity": "high",
+      "trigger_keywords": ["stop", "marshaller", "signal", "continues forward", "no clear stop signal", "hand-signal"],
+      "evidence_keywords": ["stop signal", "manual marshalling", "imminent danger", "stop the aircraft"],
+      "action_tags": ["marshaller_refresher", "signal_protocol_enforcement"]
+    },
+    {
+      "code": "NO_WING_WALKER_COVERAGE",
+      "label": "Insufficient wing-walker coverage during aircraft movement",
+      "severity": "high",
+      "trigger_keywords": ["wingtip", "towed", "tow", "only one marshaller", "close distance", "being towed"],
+      "evidence_keywords": ["wingwalkers", "aircraft movement", "imminent danger", "stop the aircraft"],
+      "action_tags": ["assign_wingwalkers", "tow_briefing_refresh", "movement_hold_until_coverage"]
+    },
+    {
+      "code": "JET_BLAST_PROXIMITY",
+      "label": "Personnel/equipment exposed to jet blast risk",
+      "severity": "high",
+      "trigger_keywords": ["pushback", "behind aircraft", "tail", "thrust", "heat distortion", "exhaust"],
+      "evidence_keywords": ["jet blast", "blast area", "remain clear", "engines are running"],
+      "action_tags": ["clear_blast_zone", "pushback_zone_control", "equipment_securement"]
+    },
+    {
+      "code": "FUELING_WITH_POSSIBLE_ENGINE_ACTIVITY",
+      "label": "Fueling operation with possible active engine/unsafe beacon condition",
+      "severity": "high",
+      "trigger_keywords": ["fuel", "fueling", "fuel truck", "anti-collision beacon", "beacon", "refuel"],
+      "evidence_keywords": ["fuelling", "fueling", "anti-collision", "engines are running", "fire prevention"],
+      "action_tags": ["fueling_hold", "verify_engine_shutdown", "refueling_safety_checklist"]
+    },
+    {
+      "code": "SAFETY_ALERT_RESPONSE_GAP",
+      "label": "Warning signal present without adequate safety response",
+      "severity": "medium",
+      "trigger_keywords": ["warning", "beep", "audio", "announcement", "stand clear"],
+      "evidence_keywords": ["warning", "safety communication", "alert", "stand clear"],
+      "action_tags": ["alarm_response_drill", "communication_protocol_review"]
+    }
+  ]
+}
