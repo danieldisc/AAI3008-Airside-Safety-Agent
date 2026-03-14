@@ -1,6 +1,0 @@
-{
-  "method": "tfidf",
-  "chunks": 2016,
-  "chunk_size": 1000,
-  "chunk_overlap": 200
-}

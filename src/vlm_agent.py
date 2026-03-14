@@ -26,8 +26,7 @@ class SafetyAgent:
         self.client = genai.Client(api_key=api_key)
         
         # Define the model to use throughout the class
-        # DANIEL'S FIX: Upgraded from the "Lite" preview to the full-powered model for better spatial reasoning!
-        self.model_name = "gemini-2.5-flash" 
+        self.model_name = "gemini-3.1-flash-lite-preview" 
         
         # DUAL-ENGINE UPGRADE: Initialise OpenAI Client if the key exists
         openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -76,7 +75,6 @@ class SafetyAgent:
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 pil_img = Image.fromarray(rgb_frame)
                 # Resize to save token/bandwidth costs while maintaining semantics
-                # DANIEL'S FIX: Increased resolution to 1024x1024 so the AI isn't blind! 🦅
                 pil_img.thumbnail((1024, 1024)) 
                 frames.append(pil_img)
                 
@@ -115,7 +113,7 @@ class SafetyAgent:
         
         # --- MAP PHASE: The Observer ---
         observer_prompt = self._load_prompt("observer_prompt.txt")
-        # DANIEL'S FIX: Ensure the AI knows exactly what JSON structure to output!
+        
         observer_prompt += '\n\nOutput a JSON object with a "frames" key containing an array of objects for each frame.'
 
         for idx, chunk in enumerate(chunks):
@@ -125,7 +123,6 @@ class SafetyAgent:
             try:
                 # DUAL-ENGINE UPGRADE: Route the request to the correct AI Model
                 if engine == "Gemini":
-                    # NEW SDK: Using client.models.generate_content and types.GenerateContentConfig
                     response = self.client.models.generate_content(
                         model=self.model_name,
                         contents=[observer_prompt] + chunk,
@@ -154,14 +151,10 @@ class SafetyAgent:
                 # Parse the JSON safely
                 log_data_raw = json.loads(response_text)
                 
-                # DANIEL'S FIX: Normalise the JSON structure in case the AI wraps it differently
                 log_data = log_data_raw.get("frames", log_data_raw) if isinstance(log_data_raw, dict) else log_data_raw
-                
                 full_video_logs.extend(log_data) 
-                
                 chunk_has_violation = False
                 
-                # DANIEL'S FIX: Removed Royston's duplicate loop and the dangerous "AND" logic gate. 
                 # If they are in the danger zone, we flag it immediately! Paranoia mode engaged! 🚨
                 for state in log_data:
                     if state.get("danger_zone_violation"):
@@ -176,12 +169,8 @@ class SafetyAgent:
                     })
                         
             except Exception as e:
-                # DANIEL'S FIX: Enhanced error logging so it doesn't just crash silently.
                 print(f"Warning: Chunk {idx} failed or returned invalid JSON using {engine}. Error: {e}")
                 continue
-            
-            # Note: The 'if violation_found: break' statement has been removed
-            # so the loop continues processing the entire video.
                 
             # Sleep to respect free-tier API rate limits
             time.sleep(2) 
@@ -203,8 +192,6 @@ class SafetyAgent:
                 })
                 
             analyst_prompt = self._load_prompt("analyst_prompt.txt")
-            
-            # DANIEL'S FIX: Actually inject the combined JSON logs into the prompt so the Analyst isn't flying blind! 🦅
             analyst_prompt += f"\n\nCOMBINED SYSTEM LOG FOR ALL FLAGGED INCIDENTS:\n{json.dumps(combined_logs, indent=2)}"
             
             # DUAL-ENGINE UPGRADE: Route the narrative generation to the correct AI Model

@@ -1,0 +1,14 @@
+[
+  {
+    "chunk_index": 0,
+    "propeller_active": true,
+    "person_detected": true,
+    "has_violation": true
+  },
+  {
+    "chunk_index": 1,
+    "propeller_active": true,
+    "person_detected": true,
+    "has_violation": true
+  }
+]

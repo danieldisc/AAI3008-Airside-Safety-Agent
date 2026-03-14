@@ -1,6 +1,5 @@
 # AAI3008-Airside-Safety-Agent
-
-Multimodal LLM agent for automated airport ground handling incident investigation.
+Multimodal LLM Agent for Automated Airport Ground Handling Incident Investigation.
 
 Given a ramp/airside video clip, the system:
 1. Extracts frame-level safety observations via a VLM (OpenAI or Gemini)
