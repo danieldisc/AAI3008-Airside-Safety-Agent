@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 import time
 from vlm_agent import SafetyAgent
-from report_gen import create_pdf_report
+from report_gen import create_pdf_report, extract_section
 from evaluate import evaluate_observer_phase, evaluate_analyst_phase
 
 # RAG Pipeline Imports
@@ -177,16 +177,33 @@ if st.session_state.get('file_processed') and 'structured_report' in st.session_
 
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 3. Raw Data Drawers
-    with st.expander("📝 View VLM Narrative (Raw)"):
-        st.write(st.session_state['analysis_result'])
+    # 3. VLM Narrative Breakdown
+    raw_narrative = st.session_state['analysis_result']
+    vlm_summary = extract_section(raw_narrative, "OVERALL INCIDENT SUMMARY")
+    vlm_sequence = extract_section(raw_narrative, "COMBINED NARRATIVE SEQUENCE")
+    vlm_root_cause = extract_section(raw_narrative, "COMPREHENSIVE ROOT CAUSE OBSERVATION")
+
+    with st.expander("📝 View Detailed Incident Narrative", expanded=True):
+        if not vlm_summary and not vlm_sequence:
+            # Fallback just in case the VLM forgot its formatting headers
+            st.write(raw_narrative)
+        else:
+            if vlm_summary:
+                st.markdown("**OVERALL INCIDENT SUMMARY**")
+                st.write(vlm_summary)
+            if vlm_sequence:
+                st.markdown("**COMBINED NARRATIVE SEQUENCE**")
+                st.write(vlm_sequence)
+            if vlm_root_cause:
+                st.markdown("**COMPREHENSIVE ROOT CAUSE OBSERVATION**")
+                st.write(vlm_root_cause)
         
     with st.expander("🔎 View Raw Frame-by-Frame Observer Logs"):
         st.json(st.session_state['full_logs'])
     
     # 4. Export PDF (Using our updated report_gen.py)
     pdf_filename = "safety_report.pdf"
-    create_pdf_report(report, pdf_filename)
+    create_pdf_report(report, st.session_state['analysis_result'], pdf_filename)
     
     with open(pdf_filename, "rb") as pdf_file:
         st.download_button(
