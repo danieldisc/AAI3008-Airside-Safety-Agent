@@ -1,0 +1,363 @@
+{
+  "clip_id": "inc_airport_ground_handler_safe_wave_veo",
+  "retrieval_top_k": 3,
+  "claims": [
+    {
+      "claim_id": "obs_1",
+      "claim_type": "observation",
+      "time_window": {
+        "t_start": 0.0,
+        "t_end": 1.0
+      },
+      "claim_text": "Aircraft engine/propeller appears active during ground operation.",
+      "retrieval_query": "Aircraft engine/propeller appears active during ground operation. engine ingestion zone jet blast area ramp clearance",
+      "evidence": [
+        {
+          "rank": 1,
+          "score": 0.37656892661181063,
+          "citation": "N_8900.749.pdf (page 2)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 1,
+            "page_label": "2",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "8/29/25  N 8900.749 \n2 \n(1) The specific dangers and consequences of entering engine ingestion or jet blast zones; \n(2) Proper protocols to avoid entering an engine ingestion or jet blast zone; and \n(3) On-the-job, instructor-led training to physically demonstrate the engine ingestion \nzone boundaries and jet blast zones for each kind of aircraft the ground crew may encounter. \nc. The term “ramp worker” does not have an established Federal definition. For this review, \nconsider ramp workers as personnel working on the ground in the ramp/apron area of an airport, \nwho conduct or are responsible for marshalling, fueling, cargo and baggage loading, deicing, and \nservicing of an aircraft. \n6. Discussion. \na. For the FAA to meet Section 353, the Office of Safety Standards needs support from \nSafety Assurance to collect information from the CH’s manuals on: \n(1) Devices and methods for communication on the airport ramp, including"
+        },
+        {
+          "rank": 2,
+          "score": 0.2703471017228339,
+          "citation": "N_8900.749.pdf (page 1)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "5. Background. Ramp accidents and incidents occur worldwide every year, causing harm to \npersonnel and damage to equipment. As the nation’s aviation system becomes more crowded \nevery day, increased congestion at airports may exacerbate ground safety concerns. \na. The FAA Reauthorization Act of 2024 was signed into law by the President on \nMay 16, 2024. Section 353, Ramp Worker Safety Call to Action, mandates a safety review of \nairport ramp worker safety and ways to minimize or eliminate ingestion zone and jet blast zone \naccidents. \nb. In addition to the safety review, the FAA is mandated to develop and publish training and \nrelated educational materials about aircraft engine ingestion and jet blast hazards for ground \ncrews, including supervisory and contract employees, that includes information on:"
+        },
+        {
+          "rank": 3,
+          "score": 0.25674778097620277,
+          "citation": "engine-danger-areas.pdf (page 1)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2024-07-29T09:58:18-04:00",
+            "author": "IATA",
+            "moddate": "2024-07-29T09:58:18-04:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\engine-danger-areas.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "engine-danger-areas.pdf"
+          },
+          "text": "away and continue its maneuver. \na. Vehicles and personnel shall remain clear of aircraft danger areas when aircraft engines are running and/or \nthe anti-collision lights are on. \nb. To prevent incidents and accident caused by aircraft engines, personnel shall never position themselves or \nequipment in the following critical areas before/ during aircraft departure and arrival. \n1. Engine intake area \n2. Engine blast area \n3. Propeller rotation, where applicable \nc. Ensure the engine intake/propeller rotation is clear at all times when engines are running or when the engine \nis about to start \nd. It is forbidden to pass through the blast area while engines are running. \n      Danger: Ground personnel and/or equipment shall stay clear of the engine intake and blast areas.  \n \nExample of Engine danger area – Jet Aircraft and Propeller Aircraft"
+        }
+      ]
+    },
+    {
+      "claim_id": "obs_2",
+      "claim_type": "observation",
+      "time_window": {
+        "t_start": 0.0,
+        "t_end": 1.0
+      },
+      "claim_text": "Ground personnel visible while aircraft engine/propeller appears active.",
+      "retrieval_query": "Ground personnel visible while aircraft engine/propeller appears active. engine ingestion zone jet blast area ramp clearance",
+      "evidence": [
+        {
+          "rank": 1,
+          "score": 0.3661829994744785,
+          "citation": "N_8900.749.pdf (page 2)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 1,
+            "page_label": "2",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "8/29/25  N 8900.749 \n2 \n(1) The specific dangers and consequences of entering engine ingestion or jet blast zones; \n(2) Proper protocols to avoid entering an engine ingestion or jet blast zone; and \n(3) On-the-job, instructor-led training to physically demonstrate the engine ingestion \nzone boundaries and jet blast zones for each kind of aircraft the ground crew may encounter. \nc. The term “ramp worker” does not have an established Federal definition. For this review, \nconsider ramp workers as personnel working on the ground in the ramp/apron area of an airport, \nwho conduct or are responsible for marshalling, fueling, cargo and baggage loading, deicing, and \nservicing of an aircraft. \n6. Discussion. \na. For the FAA to meet Section 353, the Office of Safety Standards needs support from \nSafety Assurance to collect information from the CH’s manuals on: \n(1) Devices and methods for communication on the airport ramp, including"
+        },
+        {
+          "rank": 2,
+          "score": 0.2723486332732672,
+          "citation": "engine-danger-areas.pdf (page 1)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2024-07-29T09:58:18-04:00",
+            "author": "IATA",
+            "moddate": "2024-07-29T09:58:18-04:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\engine-danger-areas.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "engine-danger-areas.pdf"
+          },
+          "text": "away and continue its maneuver. \na. Vehicles and personnel shall remain clear of aircraft danger areas when aircraft engines are running and/or \nthe anti-collision lights are on. \nb. To prevent incidents and accident caused by aircraft engines, personnel shall never position themselves or \nequipment in the following critical areas before/ during aircraft departure and arrival. \n1. Engine intake area \n2. Engine blast area \n3. Propeller rotation, where applicable \nc. Ensure the engine intake/propeller rotation is clear at all times when engines are running or when the engine \nis about to start \nd. It is forbidden to pass through the blast area while engines are running. \n      Danger: Ground personnel and/or equipment shall stay clear of the engine intake and blast areas.  \n \nExample of Engine danger area – Jet Aircraft and Propeller Aircraft"
+        },
+        {
+          "rank": 3,
+          "score": 0.2639927605029222,
+          "citation": "N_8900.749.pdf (page 1)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "5. Background. Ramp accidents and incidents occur worldwide every year, causing harm to \npersonnel and damage to equipment. As the nation’s aviation system becomes more crowded \nevery day, increased congestion at airports may exacerbate ground safety concerns. \na. The FAA Reauthorization Act of 2024 was signed into law by the President on \nMay 16, 2024. Section 353, Ramp Worker Safety Call to Action, mandates a safety review of \nairport ramp worker safety and ways to minimize or eliminate ingestion zone and jet blast zone \naccidents. \nb. In addition to the safety review, the FAA is mandated to develop and publish training and \nrelated educational materials about aircraft engine ingestion and jet blast hazards for ground \ncrews, including supervisory and contract employees, that includes information on:"
+        }
+      ]
+    },
+    {
+      "claim_id": "obs_3",
+      "claim_type": "observation",
+      "time_window": {
+        "t_start": 0.0,
+        "t_end": 9.0
+      },
+      "claim_text": "Ground crew remains within aircraft engine intake hazard and exclusion zone while engine/propeller appears active.",
+      "retrieval_query": "Ground crew remains within aircraft engine intake hazard and exclusion zone while engine/propeller appears active. engine ingestion zone jet blast area ramp clearance",
+      "evidence": [
+        {
+          "rank": 1,
+          "score": 0.35946426529368064,
+          "citation": "N_8900.749.pdf (page 2)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 1,
+            "page_label": "2",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "8/29/25  N 8900.749 \n2 \n(1) The specific dangers and consequences of entering engine ingestion or jet blast zones; \n(2) Proper protocols to avoid entering an engine ingestion or jet blast zone; and \n(3) On-the-job, instructor-led training to physically demonstrate the engine ingestion \nzone boundaries and jet blast zones for each kind of aircraft the ground crew may encounter. \nc. The term “ramp worker” does not have an established Federal definition. For this review, \nconsider ramp workers as personnel working on the ground in the ramp/apron area of an airport, \nwho conduct or are responsible for marshalling, fueling, cargo and baggage loading, deicing, and \nservicing of an aircraft. \n6. Discussion. \na. For the FAA to meet Section 353, the Office of Safety Standards needs support from \nSafety Assurance to collect information from the CH’s manuals on: \n(1) Devices and methods for communication on the airport ramp, including"
+        },
+        {
+          "rank": 2,
+          "score": 0.3366534436748511,
+          "citation": "engine-danger-areas.pdf (page 1)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2024-07-29T09:58:18-04:00",
+            "author": "IATA",
+            "moddate": "2024-07-29T09:58:18-04:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\engine-danger-areas.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "engine-danger-areas.pdf"
+          },
+          "text": "away and continue its maneuver. \na. Vehicles and personnel shall remain clear of aircraft danger areas when aircraft engines are running and/or \nthe anti-collision lights are on. \nb. To prevent incidents and accident caused by aircraft engines, personnel shall never position themselves or \nequipment in the following critical areas before/ during aircraft departure and arrival. \n1. Engine intake area \n2. Engine blast area \n3. Propeller rotation, where applicable \nc. Ensure the engine intake/propeller rotation is clear at all times when engines are running or when the engine \nis about to start \nd. It is forbidden to pass through the blast area while engines are running. \n      Danger: Ground personnel and/or equipment shall stay clear of the engine intake and blast areas.  \n \nExample of Engine danger area – Jet Aircraft and Propeller Aircraft"
+        },
+        {
+          "rank": 3,
+          "score": 0.2505960693167327,
+          "citation": "gosm-issue2-ver-1.pdf (page 28)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2025-02-21T12:29:48+08:00",
+            "author": "Alisha Tham",
+            "moddate": "2025-02-21T12:29:48+08:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\gosm-issue2-ver-1.pdf",
+            "total_pages": 131,
+            "page": 27,
+            "page_label": "28",
+            "manual": "gosm-issue2-ver-1.pdf"
+          },
+          "text": "28                                                              Issue 2 Revision 1   \n \n5 General Safety Guidelines \n5.1 General Ramp Safety \n5.1.1 Engine Danger Areas \n5.1.1.1 Vehicles and personnel shall remain clear of aircraft danger areas when aircraft engines \nare running and/or the anti-collision lights are on. \n5.1.1.2  In order to prevent incidents and accidents caused by aircraft engines, personnel shall \nnever position themselves or their equipment in the following critical areas before or \nduring aircraft departure and arrival: \na) Engine intake area \nb) Engine blast area \nc) Propeller rotation area, where applicable \n5.1.1.3 Make sure the engine intake/propeller rotation area is clear at all times when engines are \nrunning, or when the engine start-up is about to begin. \n5.1.2 Fire Prevention and Protection \n5.1.2.1 All personnel shall not smoke at the airside except in designated smoking area(s) or have \nunauthorised open flames."
+        }
+      ]
+    },
+    {
+      "claim_id": "visual_1",
+      "claim_type": "signal_visual",
+      "time_window": null,
+      "claim_text": "danger zone violation detected",
+      "retrieval_query": "danger zone violation detected",
+      "evidence": [
+        {
+          "rank": 1,
+          "score": 0.12871131540570985,
+          "citation": "manual-of-aerodrome-standards-v2-6.pdf (page 168)",
+          "source": {
+            "producer": "PyPDF",
+            "creator": "PyPDF",
+            "creationdate": "2021-06-15T17:12:05+08:00",
+            "moddate": "2021-06-15T17:12:05+08:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\manual-of-aerodrome-standards-v2-6.pdf",
+            "total_pages": 314,
+            "page": 167,
+            "page_label": "168",
+            "manual": "manual-of-aerodrome-standards-v2-6.pdf"
+          },
+          "text": "marking by rubber deposits. \nc. These figures were deduced by reference to the outer main gear wheel space which is element \n2 of the aerodrome reference code at Chapter 2, Table 2-1. \n  \n9.2.2.6     Touchdown zone marking \n Application \n9.2.2.6.1   A touchdown zone marking shall be provided in the touchdown zone \nof a paved precision approach runway where the code number is 2, \n3 or 4. \n9.2.2.6.2   Recommendation — A touchdown zone marking should be \nprovided in the touchdown zone of a paved non-precision approach"
+        },
+        {
+          "rank": 2,
+          "score": 0.10060514168979735,
+          "citation": "manual-of-aerodrome-standards-v2-6.pdf (page 206)",
+          "source": {
+            "producer": "PyPDF",
+            "creator": "PyPDF",
+            "creationdate": "2021-06-15T17:12:05+08:00",
+            "moddate": "2021-06-15T17:12:05+08:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\manual-of-aerodrome-standards-v2-6.pdf",
+            "total_pages": 314,
+            "page": 205,
+            "page_label": "206",
+            "manual": "manual-of-aerodrome-standards-v2-6.pdf"
+          },
+          "text": "specifications of ICAO Annex 14 Vol. I, Appendix 2, Figure A2-6 or \nA2-7. \n9.2.3.13     Runway touchdown zone lights \n Application \n9.2.3.13.1     Touchdown zone lights shall be provided in the touchdown zone of a \nprecision approach runway category II or III. \n Location \n9.2.3.13.2     Touchdown zone lights shall extend from the threshold for a \nlongitudinal distance of 900 m, except that, on runways less than \n1 800 m in length, the system shall be shortened so that it does not \nextend beyond the midpoint of the runway. The pattern shall be \nformed by pairs of barrettes symmetrically located about the runway \ncentre line. The lateral spacing between the innermost lights of a pair \nof barrettes shall be equal to the lateral spacing selected for the \ntouchdown zone marking. The longitudinal spacing between pairs of \nbarrettes shall be either 30 m or 60 m. \n Note — To allow for operations at lower visibility minima, it may be"
+        },
+        {
+          "rank": 3,
+          "score": 0.09267091038589056,
+          "citation": "gosm-issue2-ver-1.pdf (page 31)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2025-02-21T12:29:48+08:00",
+            "author": "Alisha Tham",
+            "moddate": "2025-02-21T12:29:48+08:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\gosm-issue2-ver-1.pdf",
+            "total_pages": 131,
+            "page": 30,
+            "page_label": "31",
+            "manual": "gosm-issue2-ver-1.pdf"
+          },
+          "text": "the aircraft stand should observe the following: \na) Keep clear of the PLB safety zone at all times; \nb) After PLB has docked to aircraft, only vehicles and equipment authorised by CAG may \nbe positioned in the PLB safety zone;"
+        }
+      ]
+    },
+    {
+      "claim_id": "visual_2",
+      "claim_type": "signal_visual",
+      "time_window": null,
+      "claim_text": "personnel near active engine",
+      "retrieval_query": "personnel near active engine engine ingestion zone jet blast area ramp clearance",
+      "evidence": [
+        {
+          "rank": 1,
+          "score": 0.42968595188677344,
+          "citation": "N_8900.749.pdf (page 2)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 1,
+            "page_label": "2",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "8/29/25  N 8900.749 \n2 \n(1) The specific dangers and consequences of entering engine ingestion or jet blast zones; \n(2) Proper protocols to avoid entering an engine ingestion or jet blast zone; and \n(3) On-the-job, instructor-led training to physically demonstrate the engine ingestion \nzone boundaries and jet blast zones for each kind of aircraft the ground crew may encounter. \nc. The term “ramp worker” does not have an established Federal definition. For this review, \nconsider ramp workers as personnel working on the ground in the ramp/apron area of an airport, \nwho conduct or are responsible for marshalling, fueling, cargo and baggage loading, deicing, and \nservicing of an aircraft. \n6. Discussion. \na. For the FAA to meet Section 353, the Office of Safety Standards needs support from \nSafety Assurance to collect information from the CH’s manuals on: \n(1) Devices and methods for communication on the airport ramp, including"
+        },
+        {
+          "rank": 2,
+          "score": 0.28908579024114217,
+          "citation": "N_8900.749.pdf (page 1)",
+          "source": {
+            "producer": "Adobe PDF Library 25.1.163",
+            "creator": "Acrobat PDFMaker 25 for Word",
+            "creationdate": "2025-08-29T14:59:13-04:00",
+            "comments": "",
+            "company": "",
+            "keywords": "",
+            "moddate": "2025-10-02T11:51:39-05:00",
+            "sourcemodified": "",
+            "subject": "Ramp Worker Safety National Custom Data Collection Tool",
+            "title": "N8900.749",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\N_8900.749.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "N_8900.749.pdf"
+          },
+          "text": "5. Background. Ramp accidents and incidents occur worldwide every year, causing harm to \npersonnel and damage to equipment. As the nation’s aviation system becomes more crowded \nevery day, increased congestion at airports may exacerbate ground safety concerns. \na. The FAA Reauthorization Act of 2024 was signed into law by the President on \nMay 16, 2024. Section 353, Ramp Worker Safety Call to Action, mandates a safety review of \nairport ramp worker safety and ways to minimize or eliminate ingestion zone and jet blast zone \naccidents. \nb. In addition to the safety review, the FAA is mandated to develop and publish training and \nrelated educational materials about aircraft engine ingestion and jet blast hazards for ground \ncrews, including supervisory and contract employees, that includes information on:"
+        },
+        {
+          "rank": 3,
+          "score": 0.2399359875754728,
+          "citation": "engine-danger-areas.pdf (page 1)",
+          "source": {
+            "producer": "Microsoft® Word for Microsoft 365",
+            "creator": "Microsoft® Word for Microsoft 365",
+            "creationdate": "2024-07-29T09:58:18-04:00",
+            "author": "IATA",
+            "moddate": "2024-07-29T09:58:18-04:00",
+            "source": "C:\\schoolwork\\LLM\\project2\\AAI3008-Airside-Safety-Agent\\manuals\\engine-danger-areas.pdf",
+            "total_pages": 3,
+            "page": 0,
+            "page_label": "1",
+            "manual": "engine-danger-areas.pdf"
+          },
+          "text": "away and continue its maneuver. \na. Vehicles and personnel shall remain clear of aircraft danger areas when aircraft engines are running and/or \nthe anti-collision lights are on. \nb. To prevent incidents and accident caused by aircraft engines, personnel shall never position themselves or \nequipment in the following critical areas before/ during aircraft departure and arrival. \n1. Engine intake area \n2. Engine blast area \n3. Propeller rotation, where applicable \nc. Ensure the engine intake/propeller rotation is clear at all times when engines are running or when the engine \nis about to start \nd. It is forbidden to pass through the blast area while engines are running. \n      Danger: Ground personnel and/or equipment shall stay clear of the engine intake and blast areas.  \n \nExample of Engine danger area – Jet Aircraft and Propeller Aircraft"
+        }
+      ]
+    }
+  ]
+}

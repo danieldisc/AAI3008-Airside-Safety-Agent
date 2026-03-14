@@ -1,9 +1,18 @@
 import streamlit as st
+from pathlib import Path
 import os
 import time
 from vlm_agent import SafetyAgent
 from report_gen import create_pdf_report
 from evaluate import evaluate_observer_phase, evaluate_analyst_phase
+
+# RAG Pipeline Imports
+from rag.vlm_incident import _build_incident_payload
+from rag.config import INDEX_DIR, DEFAULT_TOP_K
+from rag.incident_retrieval import retrieve_for_incident
+from rag.llm2_mapper import map_retrieval_payload, DEFAULT_RULE_PACK_DIR
+from rag.llm3_teachable import build_coaching_payload
+from rag.llm4_report import build_report
 
 st.set_page_config(
     page_title="Changi Airside Safety Audit",
@@ -84,19 +93,41 @@ if uploaded_file is not None:
             progress_bar.progress(percent, text=text)
             
         try:
-            # DANIEL'S UPGRADE: Pass the engine_choice to the backend
             full_logs, analysis_text = agent.analyze_pipeline(
                 temp_path, 
                 progress_callback=update_progress,
                 engine=engine_choice 
             )
             
+            update_progress(85, text="Structuring data and querying SOP manuals...")
+            
+            incident_payload = _build_incident_payload(
+                video_path=Path(temp_path), 
+                clip_id=uploaded_file.name, 
+                logs=full_logs, 
+                analyst_text=analysis_text
+            )
+            
+            # 3. Run the Deterministic RAG Pipeline
+            retrieval_payload = retrieve_for_incident(
+                incident_payload, index_dir=INDEX_DIR, top_k=DEFAULT_TOP_K
+            )
+            violations_payload = map_retrieval_payload(
+                retrieval_payload, rule_pack_dir=DEFAULT_RULE_PACK_DIR
+            )
+            teachable_payload = build_coaching_payload(violations_payload)
+            final_report = build_report(
+                incident_payload, retrieval_payload, violations_payload, teachable_payload
+            )
+            
             update_progress(100, text="Pipeline Execution Complete.")
             time.sleep(1)
             progress_bar.empty()
             
+            # Save to session state
             st.session_state['analysis_result'] = analysis_text
             st.session_state['full_logs'] = full_logs
+            st.session_state['structured_report'] = final_report  # New structured payload
             st.session_state['file_processed'] = True
 
         except Exception as e:
@@ -105,27 +136,61 @@ if uploaded_file is not None:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
 
-if st.session_state.get('file_processed') and st.session_state.get('analysis_result'):
+if st.session_state.get('file_processed') and 'structured_report' in st.session_state:
+    report = st.session_state['structured_report']
+    summary = report.get('summary', {})
+    
     st.markdown("---")
-    st.subheader(f"Incident Report ({engine_choice})")
     
-    st.markdown(f"""
-    <div class="report-container">
-        {st.session_state['analysis_result']}
-    </div>
-    """, unsafe_allow_html=True)
+    # Dynamic Risk Header
+    risk = summary.get('overall_risk', 'unknown').lower()
+    risk_color = "🔴" if risk == "high" else "🟡" if risk == "medium" else "🟢"
+    st.subheader(f"Incident Report ({engine_choice}) - Risk Level: {risk_color} {risk.upper()}")
     
+    # 1. Top Findings Section
+    st.markdown("### Top Safety Findings")
+    findings = summary.get('top_findings', [])
+    if not findings:
+        st.success("✅ No safety violations detected based on standard operating procedures.")
+    else:
+        for finding in findings:
+            with st.expander(f"⚠️ {finding.get('label')} ({finding.get('severity', '').upper()})", expanded=True):
+                st.write(f"**Violation Code:** `{finding.get('violation_code')}`")
+                st.write(f"**Confidence:** {finding.get('confidence')}")
+                
+                # Dig into the report to find the specific citations for this violation
+                for claim in report.get('claims', []):
+                    for match in claim.get('matched_violations', []):
+                        if match.get('violation_code') == finding.get('violation_code'):
+                            citations = match.get('citations', [])
+                            if citations:
+                                st.markdown("**SOP Citations:**")
+                                for citation in citations:
+                                    st.markdown(f"- 📖 *{citation}*")
+                                    
+    # 2. Recommended Actions Section
+    actions = report.get('recommended_immediate_actions', [])
+    if actions:
+        st.markdown("### Recommended Immediate Actions")
+        for action in actions:
+            st.markdown(f"- 🛠️ {action}")
+
     st.markdown("<br>", unsafe_allow_html=True)
     
+    # 3. Raw Data Drawers
+    with st.expander("📝 View VLM Narrative (Raw)"):
+        st.write(st.session_state['analysis_result'])
+        
     with st.expander("🔎 View Raw Frame-by-Frame Observer Logs"):
         st.json(st.session_state['full_logs'])
     
+    # 4. Export PDF (Using our updated report_gen.py)
     pdf_filename = "safety_report.pdf"
-    create_pdf_report(st.session_state['analysis_result'], pdf_filename)
+    create_pdf_report(report, pdf_filename)
     
     with open(pdf_filename, "rb") as pdf_file:
         st.download_button(
-            label="Export PDF Report",
+            label="Export Structured PDF Report",
             data=pdf_file,
             file_name="Preliminary_Incident_Report.pdf",
             mime="application/pdf"
@@ -134,8 +199,6 @@ if st.session_state.get('file_processed') and st.session_state.get('analysis_res
     # --- Automated Evaluation Section ---
     st.markdown("---")
     st.subheader("📊 Automated Evaluation Metrics")
-    
-    
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     base_name = os.path.splitext(uploaded_file.name)[0]

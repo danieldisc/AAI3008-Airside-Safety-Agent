@@ -27,7 +27,7 @@ class SafetyAgent:
         
         # Define the model to use throughout the class
         self.model_name = "gemini-3.1-flash-lite-preview" 
-        
+        # self.model_name = "gemini-2.5-flash" 
         # DUAL-ENGINE UPGRADE: Initialise OpenAI Client if the key exists
         openai_api_key = os.getenv("OPENAI_API_KEY")
         if openai_api_key:
