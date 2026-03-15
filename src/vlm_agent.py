@@ -92,6 +92,7 @@ class SafetyAgent:
         3. Observer Agent logs the data (JSON).
         4. If violation found -> Analyst Agent writes report.
         """
+        start_time = time.time()
         if engine == "OpenAI" and not self.openai_client:
             return [], "Error: OpenAI API key not found in environment variables."
 
@@ -218,10 +219,17 @@ class SafetyAgent:
             
             if progress_callback:
                 progress_callback(100, f"Analysis complete via {engine}.")
-            return full_video_logs, final_text
+            
+            end_time = time.time()
+            processing_time = round(end_time - start_time, 2)
+            
+            return full_video_logs, final_text, processing_time
             
         else:
             if progress_callback:
                 progress_callback(100, f"Analysis complete via {engine}.")
-            # DANIEL'S FIX: Always return a tuple with full_video_logs to prevent the app from crashing on safe videos! 🩹
-            return full_video_logs, "### AUDIT COMPLETE\n\nNo safety violations were detected in the provided footage."
+            
+            end_time = time.time()
+            processing_time = round(end_time - start_time, 2)
+            
+            return full_video_logs, "### AUDIT COMPLETE\n\nNo safety violations were detected in the provided footage.", processing_time

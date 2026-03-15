@@ -93,7 +93,7 @@ if uploaded_file is not None:
             progress_bar.progress(percent, text=text)
             
         try:
-            full_logs, analysis_text = agent.analyze_pipeline(
+            full_logs, analysis_text, processing_time = agent.analyze_pipeline(
                 temp_path, 
                 progress_callback=update_progress,
                 engine=engine_choice 
@@ -129,6 +129,7 @@ if uploaded_file is not None:
             st.session_state['full_logs'] = full_logs
             st.session_state['structured_report'] = final_report  # New structured payload
             st.session_state['file_processed'] = True
+            st.session_state['processing_time'] = processing_time
 
         except Exception as e:
             st.error(f"Processing Error: {e}")
@@ -216,6 +217,9 @@ if st.session_state.get('file_processed') and 'structured_report' in st.session_
     # --- Automated Evaluation Section ---
     st.markdown("---")
     st.subheader("📊 Automated Evaluation Metrics")
+    
+    if 'processing_time' in st.session_state:
+        st.metric("⏱️ VLM Pipeline Processing Time", f"{st.session_state['processing_time']} seconds")
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     base_name = os.path.splitext(uploaded_file.name)[0]
