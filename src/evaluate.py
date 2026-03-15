@@ -13,11 +13,11 @@ warnings.filterwarnings("ignore")
 # Ensure required NLTK data is downloaded for METEOR
 try:
     nltk.data.find('tokenizers/punkt')
-    nltk.data.find('tokenizers/punkt_tab')  # NEW: Check for punkt_tab
+    nltk.data.find('tokenizers/punkt_tab')
     nltk.data.find('corpora/wordnet')
 except LookupError:
     nltk.download('punkt', quiet=True)
-    nltk.download('punkt_tab', quiet=True)  # NEW: Download punkt_tab
+    nltk.download('punkt_tab', quiet=True)
     nltk.download('wordnet', quiet=True)
 
 def evaluate_observer_phase(truth_json_path, pred_json_data, chunk_size=10):
@@ -48,6 +48,14 @@ def evaluate_observer_phase(truth_json_path, pred_json_data, chunk_size=10):
         print(f"Warning: Chunk count mismatch! Truth: {len(y_true)} chunks, Pred: {len(y_pred)} chunks")
         min_len = min(len(y_true), len(y_pred))
         y_true, y_pred = y_true[:min_len], y_pred[:min_len]
+        
+    if len(y_true) == 0 or len(y_pred) == 0:
+        return {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1_score": 0.0
+        }
 
     # Calculate metrics
     metrics = {
@@ -108,16 +116,6 @@ def run_evaluation(eval_dir="eval_data"):
         # Define paths based on your structure
         truth_json_path = os.path.join(folder_path, f"{video_folder}_truths.json")
         truth_report_path = os.path.join(folder_path, f"{video_folder}_report.txt")
-        
-        # --- STOP & GENERATE ---
-        # In a fully automated loop, you would call your SafetyAgent here:
-        # agent = SafetyAgent()
-        # video_path = os.path.join(folder_path, f"{video_folder}.mp4")
-        # pred_json_data, pred_report_text = agent.analyze_pipeline_for_eval(video_path)
-        
-        # For demonstration, we assume you have the predictions ready.
-        # You will need to slightly modify `vlm_agent.py` to return the JSON logs 
-        # alongside the final text if you want to evaluate both in one go.
         
         if os.path.exists(truth_json_path):
             # observer_metrics = evaluate_observer_phase(truth_json_path, pred_json_data)

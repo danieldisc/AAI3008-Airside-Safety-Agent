@@ -55,6 +55,19 @@ class SafetyAgent:
         buffered = BytesIO()
         img.save(buffered, format="JPEG")
         return base64.b64encode(buffered.getvalue()).decode('utf-8')
+    
+    def _normalize_frame_list(self, raw):
+        if isinstance(raw, list):
+            return raw
+        if isinstance(raw, dict):
+            for key in ("frames", "results", "data", "observations", "analysis"):
+                val = raw.get(key)
+                if isinstance(val, list) and len(val) > 0 and isinstance(val[0], dict):
+                    return val
+            for val in raw.values():
+                if isinstance(val, list) and len(val) > 0 and isinstance(val[0], dict):
+                    return val
+        return []
 
     def _extract_frames(self, video_path, extract_fps=1):
         """Extracts frames from the video at a specified FPS."""
@@ -83,7 +96,6 @@ class SafetyAgent:
         cap.release()
         return frames
 
-    # DUAL-ENGINE UPGRADE: Added 'engine' parameter to easily switch between AI models
     def analyze_pipeline(self, video_path, progress_callback=None, engine="Gemini"):
         """
         The Map-Reduce Pipeline:
@@ -121,8 +133,8 @@ class SafetyAgent:
             if progress_callback:
                 progress_callback(20 + int((idx / len(chunks)) * 50), f"{engine} Observer analyzing chunk {idx+1}/{len(chunks)}...")
                 
+            # --- STEP 1: Handle API Calls ---
             try:
-                # DUAL-ENGINE UPGRADE: Route the request to the correct AI Model
                 if engine == "Gemini":
                     response = self.client.models.generate_content(
                         model=self.model_name,
@@ -149,14 +161,23 @@ class SafetyAgent:
                     )
                     response_text = response.choices[0].message.content
 
+            except Exception as api_error:
+                # Raise the error so app.py catches it and displays it in Streamlit
+                raise Exception(f"API Error during {engine} extraction: {api_error}")
+
+            # --- STEP 2: Handle JSON Parsing ---
+            try:
                 # Parse the JSON safely
                 log_data_raw = json.loads(response_text)
+                log_data = self._normalize_frame_list(log_data_raw)
+                if not log_data:
+                    print(f"Warning: Chunk {idx+1} returned unrecognisable JSON shape.")
+                    continue
                 
-                log_data = log_data_raw.get("frames", log_data_raw) if isinstance(log_data_raw, dict) else log_data_raw
                 full_video_logs.extend(log_data) 
                 chunk_has_violation = False
                 
-                # If they are in the danger zone, we flag it immediately! Paranoia mode engaged! 🚨
+                # If they are in the danger zone, we flag it immediately!
                 for state in log_data:
                     if state.get("danger_zone_violation"):
                         chunk_has_violation = True
@@ -169,12 +190,12 @@ class SafetyAgent:
                         "chunk": chunk
                     })
                         
-            except Exception as e:
-                print(f"Warning: Chunk {idx} failed or returned invalid JSON using {engine}. Error: {e}")
+            except Exception as json_error:
+                print(f"Warning: Chunk {idx} returned invalid JSON using {engine}. Error: {json_error}")
                 continue
                 
             # Sleep to respect free-tier API rate limits
-            time.sleep(2) 
+            time.sleep(2)
 
         # --- REDUCE PHASE: The Analyst ---
         if incidents:
@@ -196,26 +217,29 @@ class SafetyAgent:
             analyst_prompt += f"\n\nCOMBINED SYSTEM LOG FOR ALL FLAGGED INCIDENTS:\n{json.dumps(combined_logs, indent=2)}"
             
             # DUAL-ENGINE UPGRADE: Route the narrative generation to the correct AI Model
-            if engine == "Gemini":
-                final_response = self.client.models.generate_content(
-                    model=self.model_name,
-                    contents=[analyst_prompt] + combined_frames
-                )
-                final_text = final_response.text
-                
-            elif engine == "OpenAI":
-                content_list = [{"type": "text", "text": analyst_prompt}]
-                for img in combined_frames:
-                    base64_image = self._pil_to_base64(img)
-                    content_list.append({
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}
-                    })
-                response = self.openai_client.chat.completions.create(
-                    model="gpt-4o",
-                    messages=[{"role": "user", "content": content_list}]
-                )
-                final_text = response.choices[0].message.content
+            try:
+                if engine == "Gemini":
+                    final_response = self.client.models.generate_content(
+                        model=self.model_name,
+                        contents=[analyst_prompt] + combined_frames
+                    )
+                    final_text = final_response.text
+                    
+                elif engine == "OpenAI":
+                    content_list = [{"type": "text", "text": analyst_prompt}]
+                    for img in combined_frames:
+                        base64_image = self._pil_to_base64(img)
+                        content_list.append({
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}
+                        })
+                    response = self.openai_client.chat.completions.create(
+                        model="gpt-4o",
+                        messages=[{"role": "user", "content": content_list}]
+                    )
+                    final_text = response.choices[0].message.content
+            except Exception as api_error:
+                raise Exception(f"API Error during {engine} report generation: {api_error}")
             
             if progress_callback:
                 progress_callback(100, f"Analysis complete via {engine}.")
