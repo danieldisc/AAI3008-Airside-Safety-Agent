@@ -1,0 +1,15 @@
+### OVERALL INCIDENT SUMMARY
+A crew member consistently violated safety protocols by standing dangerously close to an active aircraft propeller. This sustained breach of guidelines highlighted a significant disregard for safety exclusion zones.
+
+### COMBINED NARRATIVE SEQUENCE
+Initially, a crew member was observed standing close to a running aircraft propeller, repeatedly breaching the 7.5m exclusion zone for active engines. Over consecutive frames, the individual moved within a perilous proximity to the propeller, risking ingestion or impact. This behavior was persistent across both time intervals, with no apparent corrective action or acknowledgment of the imminent danger.
+
+### RULE REFERENCE & VERDICT
+The following safety rules from the Changi Airside Safety Directive (CASD) were violated:
+1. **Exclusion Zones:** 7.5m buffer from active engine/propeller.
+2. **Ingestion Hazard:** 5m radius suction zone.
+  
+**Final Status:** VIOLATION
+
+### COMPREHENSIVE ROOT CAUSE OBSERVATION
+The root cause appears to be a systemic disregard for established safety zones. The crew member demonstrated either a lack of awareness of the potential hazards or willful negligence. This could be attributed to insufficient safety training or failure in maintaining situational awareness amidst active aircraft operations.

@@ -1,0 +1,7 @@
+video,obs_accuracy,obs_precision,obs_recall,obs_f1,obs_fp,obs_fn,analyst_meteor,analyst_bert_f1
+video_1,1.0,1.0,1.0,1.0,0,0,0.2637321532836568,0.7974215745925903
+video_2,,,,,,,,
+video_3,,,,,,,,
+video_4,,,,,,,,
+video_5,,,,,,,,
+video_6,,,,,,,,
