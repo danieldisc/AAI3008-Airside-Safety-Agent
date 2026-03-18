@@ -1,20 +1,15 @@
 ### OVERALL INCIDENT SUMMARY
-
-During the footage, an individual repeatedly violated airside safety protocols by entering and remaining in a hazardous area near an active aircraft propeller. The person was observed directly interacting with the spinning propeller, disregarding established exclusion and danger zones.
+A crew member was repeatedly detected violating the exclusion zone around an active propeller. The individual approached dangerously close to the running aircraft engine, positioning themselves within the critical danger zones outlined by safety directives.
 
 ### COMBINED NARRATIVE SEQUENCE
-
-The sequence begins with a person approaching and standing dangerously close to an aircraft with an active propeller. Over the frames, the individual touches the plane near the propeller, completely disregarding the 7.5-meter exclusion zone and the 5-meter ingestion hazard zone. Despite the propeller being active, the individual continues to remain within this high-risk area for an extended period. Subsequently, even when the propeller is inactive, they continue to breach the exclusion area, indicating a sustained disregard for safety protocols.
+During the entire sequence of events, the individual consistently remained within the 7.5-meter exclusion zone, extending a hand perilously close to an active propeller. The proximity posed significant risks, underscoring a blatant disregard for safety protocols. The individual stood and moved slightly closer at times, continuously maintaining a position that violated the defined safe distance from the aircraft's working parts.
 
 ### RULE REFERENCE & VERDICT
+The specific CASD rules violated include:
 
-The individual violated the following Changi Airside Safety Directives:
-1. **Exclusion Zones**: Failure to maintain a 7.5-meter buffer from an active propeller.
-2. **Ingestion Hazard**: Breach of the 5-meter radius suction zone.
-3. **Jet Blast**: Although not applicable here, the disregard for general safety distances signifies a systemic issue.
+1. **Exclusion Zones Violation**: Breach of the 7.5-meter buffer zone from the active engine/propeller.
 
-**Final Status**: VIOLATION
+Final Status: VIOLATION
 
 ### COMPREHENSIVE ROOT CAUSE OBSERVATION
-
-The ongoing violations suggest a potential lack of awareness or a wilful disregard for airside safety protocols. It appears there is a systemic problem evidenced by the individual's continuous presence within the exclusion zones, possibly due to inadequate training or intentional risk-taking behavior fortuitously documented. No immediate corrective actions were observed, indicating possible gaps in safety supervision or enforcement at the time.
+The violation appears rooted in a systemic disregard for established exclusion zones and proper safety protocols. The individual's actions suggest either a lack of awareness or a conscious decision to bypass safety measures, potentially for observational purposes or testing the boundaries of the active machinery. This highlights the need for reinforced safety training and stricter enforcement of airside safety regulations.

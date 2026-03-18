@@ -171,17 +171,38 @@ if uploaded_file is not None:
         t1.join()
         t2.join()
 
-        # Optionally: Run evaluation script for this video, only if ground truth exists
-        import subprocess
-        base_truth_json = os.path.join(eval_data_dir, f"{base_name}_truths.json")
-        base_truth_report = os.path.join(eval_data_dir, f"{base_name}_report.txt")
-        if os.path.exists(base_truth_json) and os.path.exists(base_truth_report):
-            try:
-                subprocess.run([
-                    "python", "evaluate.py", eval_data_dir
-                ], cwd=os.path.dirname(os.path.abspath(__file__)), check=True)
-            except Exception as e:
-                st.warning(f"Evaluation script failed: {e}")
+        # Run per-engine evaluation if ground truth exists
+        truth_json = os.path.join(eval_data_dir, f"{base_name}_truths.json")
+        truth_report = os.path.join(eval_data_dir, f"{base_name}_report.txt")
+        has_truth = os.path.exists(truth_json) and os.path.exists(truth_report)
+
+        if has_truth:
+            for eng_prefix, eng_label in [("gemini", "Gemini"), ("openai", "OpenAI")]:
+                pred_json = os.path.join(eval_data_dir, f"{base_name}_{eng_prefix}_pred.json")
+                pred_report = os.path.join(eval_data_dir, f"{base_name}_{eng_prefix}_pred_report.txt")
+                eval_result = {}
+                try:
+                    if os.path.exists(pred_json):
+                        with open(pred_json, "r", encoding="utf-8") as f:
+                            pred_json_data = json.load(f)
+                        eval_result["observer"] = evaluate_observer_phase(truth_json, pred_json_data)
+                    if os.path.exists(pred_report):
+                        with open(pred_report, "r", encoding="utf-8") as f:
+                            pred_report_text = f.read()
+                        eval_result["analyst"] = evaluate_analyst_phase(truth_report, pred_report_text)
+                    if eval_result:
+                        import numpy as np
+                        class NumpyEncoder(json.JSONEncoder):
+                            def default(self, obj):
+                                if isinstance(obj, np.integer): return int(obj)
+                                if isinstance(obj, np.floating): return float(obj)
+                                if isinstance(obj, np.ndarray): return obj.tolist()
+                                return super().default(obj)
+                        eval_out = os.path.join(eval_data_dir, f"{base_name}_{eng_prefix}_eval.json")
+                        with open(eval_out, "w", encoding="utf-8") as f:
+                            json.dump(eval_result, f, indent=2, cls=NumpyEncoder)
+                except Exception as e:
+                    st.warning(f"{eng_label} evaluation failed: {e}")
         else:
             st.info("No ground truth data found for this video. Evaluation metrics will be shown only when ground truth is available.")
 
@@ -282,7 +303,8 @@ def render_engine_results(engine_name, prefix, base_name):
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     eval_folder = os.path.join(current_dir, "eval_data", base_name)
-    eval_json_path = os.path.join(eval_folder, f"{base_name}_eval.json")
+    engine_prefix_map = {"g": "gemini", "o": "openai"}
+    eval_json_path = os.path.join(eval_folder, f"{base_name}_{engine_prefix_map.get(prefix, prefix)}_eval.json")
     truth_json_path = os.path.join(eval_folder, f"{base_name}_truths.json")
     truth_report_path = os.path.join(eval_folder, f"{base_name}_report.txt")
 
@@ -335,7 +357,7 @@ if st.session_state.get('file_processed'):
     base_name = os.path.splitext(uploaded_file.name)[0]
     
     with res_col1:
-        st.header("🔵 Gemini 3.1 Results")
+        st.header("🔵 Gemini 2.5 Flash Results")
         render_engine_results("Gemini", "g", base_name)
         
     with res_col2:

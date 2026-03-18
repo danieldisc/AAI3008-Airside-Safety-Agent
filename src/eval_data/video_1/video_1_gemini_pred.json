@@ -1,63 +1,63 @@
 [
   {
     "frame_index": 0,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 1,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 2,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 3,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 4,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 5,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 6,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 7,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 8,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 9,
-    "propeller_active": true,
+    "propeller_active": false,
     "person_detected": true,
-    "danger_zone_violation": true
+    "danger_zone_violation": false
   },
   {
     "frame_index": 0,
