@@ -1,15 +1,15 @@
 ### OVERALL INCIDENT SUMMARY
-A crew member consistently violated safety protocols by standing dangerously close to an active aircraft propeller. This sustained breach of guidelines highlighted a significant disregard for safety exclusion zones.
+A person was observed repeatedly violating safety protocols by entering the exclusion zone near an active propeller. This dangerous behavior persisted across multiple flagged moments, indicating a significant disregard for established safety directives.
 
 ### COMBINED NARRATIVE SEQUENCE
-Initially, a crew member was observed standing close to a running aircraft propeller, repeatedly breaching the 7.5m exclusion zone for active engines. Over consecutive frames, the individual moved within a perilous proximity to the propeller, risking ingestion or impact. This behavior was persistent across both time intervals, with no apparent corrective action or acknowledgment of the imminent danger.
+At the beginning of the footage, a crew member is seen standing alarmingly close to an active propeller, within the danger zone of 7.5 meters. The individual proceeds to inspect or handle areas around the propeller without acknowledging the associated hazards. This engagement continues over several frames, with the crew member consistently remaining in proximity to the propeller, disregarding the safety buffer. Their actions suggest a focus on a task that seems to override typical safety considerations, possibly indicating either an urgent repair or routine inspection conducted unsafely.
 
 ### RULE REFERENCE & VERDICT
-The following safety rules from the Changi Airside Safety Directive (CASD) were violated:
-1. **Exclusion Zones:** 7.5m buffer from active engine/propeller.
-2. **Ingestion Hazard:** 5m radius suction zone.
-  
-**Final Status:** VIOLATION
+The following Changi Airside Safety Directives (CASD) were violated:
+1. **Exclusion Zones**: Maintaining a 7.5 meter buffer from an active engine/propeller.
+2. **Ingestion Hazard**: Proximity well within the 5 meter radius suction zone.
+   
+**Verdict**: VIOLATION
 
 ### COMPREHENSIVE ROOT CAUSE OBSERVATION
-The root cause appears to be a systemic disregard for established safety zones. The crew member demonstrated either a lack of awareness of the potential hazards or willful negligence. This could be attributed to insufficient safety training or failure in maintaining situational awareness amidst active aircraft operations.
+The persistent presence of the crew member within the active danger zone suggests a systemic disregard for the exclusion zones. This behavior might stem from inadequate training or safety culture, a misunderstanding of the seriousness of these zones, or a perceived urgency in their task that overshadowed the immediate risks. The incident points to the need for reinforced safety training and procedural compliance to prevent recurrence.

@@ -106,9 +106,9 @@ if uploaded_file is not None:
                 g_report = build_report(g_incident, g_retrieval, g_violations, g_teachable)
 
                 # Save outputs to eval_data_dir
-                with open(os.path.join(eval_data_dir, f"{base_name}_pred.json"), "w", encoding="utf-8") as f:
+                with open(os.path.join(eval_data_dir, f"{base_name}_gemini_pred.json"), "w", encoding="utf-8") as f:
                     json.dump(g_logs, f, indent=2)
-                with open(os.path.join(eval_data_dir, f"{base_name}_pred_report.txt"), "w", encoding="utf-8") as f:
+                with open(os.path.join(eval_data_dir, f"{base_name}_gemini_pred_report.txt"), "w", encoding="utf-8") as f:
                     f.write(g_text)
 
                 st.session_state['g_logs'] = g_logs
@@ -137,9 +137,9 @@ if uploaded_file is not None:
                 o_report = build_report(o_incident, o_retrieval, o_violations, o_teachable)
 
                 # Save outputs to eval_data_dir
-                with open(os.path.join(eval_data_dir, f"{base_name}_pred.json"), "w", encoding="utf-8") as f:
+                with open(os.path.join(eval_data_dir, f"{base_name}_openai_pred.json"), "w", encoding="utf-8") as f:
                     json.dump(o_logs, f, indent=2)
-                with open(os.path.join(eval_data_dir, f"{base_name}_pred_report.txt"), "w", encoding="utf-8") as f:
+                with open(os.path.join(eval_data_dir, f"{base_name}_openai_pred_report.txt"), "w", encoding="utf-8") as f:
                     f.write(o_text)
 
                 st.session_state['o_logs'] = o_logs
@@ -287,8 +287,13 @@ def render_engine_results(engine_name, prefix, base_name):
     truth_report_path = os.path.join(eval_folder, f"{base_name}_report.txt")
 
     if os.path.exists(eval_json_path):
-        with open(eval_json_path, "r", encoding="utf-8") as f:
-            eval_data = json.load(f)
+        try:
+            with open(eval_json_path, "r", encoding="utf-8") as f:
+                eval_data = json.load(f)
+        except json.JSONDecodeError as e:
+            st.warning(f"Evaluation file is corrupted and could not be read: {e}")
+            eval_data = None
+    if os.path.exists(eval_json_path) and eval_data is not None:
         st.markdown("---")
         st.markdown("#### 📄 Evaluation Metrics for This Video")
         eval_col1, eval_col2 = st.columns(2)

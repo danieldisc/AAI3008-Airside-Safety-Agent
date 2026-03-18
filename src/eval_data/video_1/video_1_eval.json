@@ -1,9 +1,9 @@
 {
   "observer": {
-    "accuracy": 1.0,
+    "accuracy": 0.5,
     "precision": 1.0,
-    "recall": 1.0,
-    "f1_score": 1.0,
+    "recall": 0.5,
+    "f1_score": 0.6666666666666666,
     "specificity": 0.0,
     "npv": 0.0,
     "mcc": 0.0,
@@ -11,19 +11,21 @@
     "confusion_matrix": {
       "tn": 0,
       "fp": 0,
-      "fn": 0,
-      "tp": 0
+      "fn": 1,
+      "tp": 1
     },
     "false_positives": [],
-    "false_negatives": []
+    "false_negatives": [
+      0
+    ]
   },
   "analyst": {
-    "meteor_score": 0.23084947769349917,
-    "bert_precision": 0.7953159213066101,
-    "bert_recall": 0.7742299437522888,
-    "bert_f1": 0.7846313118934631,
-    "bleu": 0.036097459350595155,
-    "rouge_1_f": 0.339393934631956,
-    "rouge_l_f": 0.32727272251074385
+    "meteor_score": 0.24315040966473972,
+    "bert_precision": 0.7995110154151917,
+    "bert_recall": 0.7842178344726562,
+    "bert_f1": 0.7917906045913696,
+    "bleu": 0.04930451876437961,
+    "rouge_1_f": 0.3370165696466836,
+    "rouge_l_f": 0.3038673983759654
   }
 }

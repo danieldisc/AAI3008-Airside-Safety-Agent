@@ -12,6 +12,16 @@ from bert_score import score as calculate_bert_score
 import csv
 import numpy as np
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (np.integer,)):
+            return int(obj)
+        if isinstance(obj, (np.floating,)):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
+
 # Suppress warnings from huggingface/transformers often triggered by BERTScore
 warnings.filterwarnings("ignore")
 
@@ -176,7 +186,7 @@ def run_evaluation(eval_dir="eval_data"):
         # Save per-video evaluation file
         eval_path = os.path.join(folder_path, f"{video_folder}_eval.json")
         with open(eval_path, 'w', encoding='utf-8') as f:
-            json.dump(eval_result, f, indent=2)
+            json.dump(eval_result, f, indent=2, cls=NumpyEncoder)
         print(f"Saved evaluation to {eval_path}\n")
 
 if __name__ == "__main__":
