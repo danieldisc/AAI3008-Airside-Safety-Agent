@@ -15,14 +15,14 @@ src/
   app.py              # Streamlit UI for interactive video analysis
   vlm_agent.py        # VLM backend (OpenAI / Gemini)
   report_gen.py       # PDF report generation
-rag/
-  run_pipeline.py     # CLI entry point — runs all 5 pipeline stages
-  vlm_incident.py     # Converts VLM output to structured incident payload
-  incident_retrieval.py  # TF-IDF retrieval over manuals
-  llm2_mapper.py      # Maps retrieved claims to violation rules
-  llm3_teachable.py   # Generates coaching moments
-  llm4_report.py      # Builds final consolidated report
-  build_index.py      # (Re)builds the TF-IDF index from manuals/
+  rag/
+    run_pipeline.py      # CLI entry point — runs all 5 pipeline stages
+    vlm_incident.py      # Converts VLM output to structured incident payload
+    incident_retrieval.py # TF-IDF retrieval over manuals
+    llm2_mapper.py       # Maps retrieved claims to violation rules
+    llm3_teachable.py    # Generates coaching moments
+    llm4_report.py       # Builds final consolidated report
+    build_index.py       # (Re)builds the TF-IDF index from manuals/
 manuals/              # Source PDFs for the retrieval index
 rag_index/            # Persisted TF-IDF index
 rule_packs/           # JSON rule definitions for violation mapping
@@ -48,10 +48,29 @@ GEMINI_API_KEY=...
 From the repo root (`AAI3008-Airside-Safety-Agent`):
 
 ```powershell
-python -m rag.run_pipeline --video-path "data/your_clip.mp4" --vlm-engine OpenAI --output-dir outputs/my_run
+cd src
+```
+
+Run using video input:
+
+```powershell
+python -m rag.run_pipeline --video-path "../data/your_clip.mp4" --vlm-engine OpenAI --output-dir ../outputs/my_run
 ```
 
 Use `--vlm-engine Gemini` to switch to the Gemini backend.
+
+Run using a pre-built incident JSON (skip VLM extraction):
+
+```powershell
+python -m rag.run_pipeline --incident-json "../outputs/smoke_test/incident_from_vlm.json" --output-dir ../outputs/my_run
+```
+
+Optional: rebuild the retrieval index before running:
+
+```powershell
+python -m rag.build_index --output-dir ../rag_index
+python -m rag.run_pipeline --video-path "../data/your_clip.mp4" --rebuild-index --output-dir ../outputs/my_run
+```
 
 ### Output files
 
@@ -81,4 +100,4 @@ Use `--vlm-engine Gemini` to switch to the Gemini backend.
 streamlit run src/app.py
 ```
 
-Upload a video and select the VLM engine from the sidebar to run an interactive analysis.
+Upload a video and run dual-engine analysis (Gemini + OpenAI concurrently) to compare outputs and evaluation metrics.
