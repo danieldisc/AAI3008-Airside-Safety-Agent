@@ -332,7 +332,8 @@ def render_engine_results(engine_name, prefix, base_name):
                 st.metric("MCC", f"{obs['mcc']:.3f}")
                 st.metric("Cohen's Kappa", f"{obs['kappa']:.3f}")
                 st.write(f"False Positives: {obs.get('false_positives', [])}")
-                st.write(f"False Negatives: {obs.get('false_negatives', [])}")            else:
+                st.write(f"False Negatives: {obs.get('false_negatives', [])}")            
+            else:
                 st.info("No observer evaluation data.")
         with eval_col2:
             st.markdown("**Phase 2: Analyst**")
